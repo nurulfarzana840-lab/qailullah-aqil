@@ -1,0 +1,360 @@
+```html
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qailulah Bersama Aqil</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #80d5ff 0%,
+    #c5edff 70%,
+    #fce9f5 100%
+  );
+  font-family: Arial, sans-serif;
+  position: relative;
+}
+
+/* Matahari bercahaya */
+.sun {
+  position: absolute;
+  top: 35px;
+  right: 9%;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #fff3a3;
+  box-shadow:
+    0 0 18px 8px rgba(255, 246, 170, 0.7),
+    0 0 45px 18px rgba(255, 239, 156, 0.35);
+  z-index: 0;
+}
+
+/* Awan latar yang bergerak */
+.sky-cloud {
+  position: absolute;
+  width: 115px;
+  height: 35px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.9);
+  z-index: 1;
+  animation: drift 28s linear infinite;
+}
+
+.sky-cloud::before,
+.sky-cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.sky-cloud::before {
+  width: 48px;
+  height: 48px;
+  top: -23px;
+  left: 17px;
+}
+
+.sky-cloud::after {
+  width: 65px;
+  height: 58px;
+  top: -29px;
+  right: 12px;
+}
+
+.cloud-a {
+  top: 14%;
+  left: -160px;
+  animation-duration: 32s;
+}
+
+.cloud-b {
+  top: 76%;
+  left: -160px;
+  transform: scale(.8);
+  animation-duration: 38s;
+  animation-delay: -15s;
+}
+
+.cloud-c {
+  top: 25%;
+  left: -160px;
+  transform: scale(.65);
+  animation-duration: 43s;
+  animation-delay: -25s;
+}
+
+@keyframes drift {
+  from { left: -180px; }
+  to { left: 115%; }
+}
+
+/* Burung terbang di langit */
+.birds {
+  position: absolute;
+  left: -120px;
+  font-size: 25px;
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+  animation: fly 20s linear infinite;
+}
+
+.birds.one {
+  top: 7%;
+  animation-duration: 23s;
+}
+
+.birds.two {
+  top: 25%;
+  font-size: 19px;
+  animation-duration: 29s;
+  animation-delay: -12s;
+}
+
+.birds.three {
+  bottom: 7%;
+  font-size: 23px;
+  animation-duration: 25s;
+  animation-delay: -8s;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  30% {
+    transform: translateX(35vw) translateY(-12px);
+  }
+  60% {
+    transform: translateX(70vw) translateY(8px);
+  }
+  100% {
+    transform: translateX(125vw) translateY(-4px);
+  }
+}
+
+/* Kawasan kepala katil */
+.bed-area {
+  position: absolute;
+  width: min(78vw, 850px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+/* Kepala katil pink */
+.headboard {
+  position: relative;
+  width: 100%;
+  padding: 35px 27px 30px;
+  background: linear-gradient(
+    145deg,
+    #ffd7ec,
+    #f5a9d4 55%,
+    #ee91c5
+  );
+  border: 5px solid #fff4fb;
+  border-radius: 90px 90px 42px 42px;
+  box-shadow:
+    0 12px 0 #e98bc0,
+    0 18px 30px rgba(143, 74, 119, 0.22),
+    inset 0 4px 12px rgba(255,255,255,.8);
+}
+
+/* Bonggol awan gebu di bahagian atas */
+.puff {
+  position: absolute;
+  background: #ffc9e6;
+  border: 5px solid #fff4fb;
+  border-bottom: 0;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.puff.p1 {
+  width: 120px;
+  height: 100px;
+  left: 8%;
+  top: -38px;
+}
+
+.puff.p2 {
+  width: 145px;
+  height: 125px;
+  left: 29%;
+  top: -60px;
+}
+
+.puff.p3 {
+  width: 145px;
+  height: 125px;
+  right: 29%;
+  top: -60px;
+}
+
+.puff.p4 {
+  width: 120px;
+  height: 100px;
+  right: 8%;
+  top: -38px;
+}
+
+/* Video di tengah kepala katil */
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 9px;
+  background: #fff9fd;
+  border: 3px solid #ffe7f5;
+  border-radius: 25px;
+  box-shadow:
+    0 5px 15px rgba(132, 62, 105, .2),
+    inset 0 0 0 2px #f8c2e0;
+  overflow: hidden;
+}
+
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+  background: #e7f7ff;
+}
+
+/* Hiasan kecil pada kepala katil */
+.star {
+  position: absolute;
+  color: white;
+  font-size: 24px;
+  text-shadow: 0 0 8px white;
+}
+
+.star.s1 {
+  left: 14px;
+  top: 42%;
+}
+
+.star.s2 {
+  right: 14px;
+  top: 42%;
+}
+
+.star.s3 {
+  left: 10%;
+  bottom: 9px;
+  font-size: 17px;
+}
+
+.star.s4 {
+  right: 10%;
+  bottom: 9px;
+  font-size: 17px;
+}
+
+/* Paparan telefon */
+@media (max-width: 600px) {
+  .bed-area {
+    width: 91vw;
+  }
+
+  .headboard {
+    padding: 23px 12px 22px;
+    border-radius: 55px 55px 28px 28px;
+    border-width: 4px;
+  }
+
+  .video-frame {
+    padding: 5px;
+    border-radius: 17px;
+  }
+
+  .video-frame iframe {
+    border-radius: 11px;
+  }
+
+  .puff.p1,
+  .puff.p4 {
+    width: 65px;
+    height: 60px;
+    top: -24px;
+  }
+
+  .puff.p2,
+  .puff.p3 {
+    width: 80px;
+    height: 75px;
+    top: -37px;
+  }
+
+  .sun {
+    width: 48px;
+    height: 48px;
+    top: 18px;
+  }
+
+  .star {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sun"></div>
+
+<!-- Awan latar -->
+<div class="sky-cloud cloud-a"></div>
+<div class="sky-cloud cloud-b"></div>
+<div class="sky-cloud cloud-c"></div>
+
+<!-- Burung bergerak di luar kepala katil -->
+<div class="birds one">🐦　🐦　🐦</div>
+<div class="birds two">🐦　🐦</div>
+<div class="birds three">🐦　🐦　🐦</div>
+
+<!-- Kepala katil awan pink -->
+<div class="bed-area">
+  <div class="headboard">
+
+    <div class="puff p1"></div>
+    <div class="puff p2"></div>
+    <div class="puff p3"></div>
+    <div class="puff p4"></div>
+
+    <span class="star s1">✦</span>
+    <span class="star s2">✧</span>
+    <span class="star s3">♡</span>
+    <span class="star s4">♡</span>
+
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/piLC6KPcvmo"
+        title="Video Qailulah Bersama Aqil"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
+```
